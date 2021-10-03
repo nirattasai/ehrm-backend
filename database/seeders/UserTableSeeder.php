@@ -38,6 +38,20 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'position' => 'SALE',
                 'department' => 'sale department',
+            ],
+            [
+                'name' => 'user2',
+                'email' => 'user2@user.com',
+                'password' => bcrypt('password'),
+                'position' => 'QA',
+                'department' => 'qa department',
+            ],
+            [
+                'name' => 'user3',
+                'email' => 'user3@user.com',
+                'password' => bcrypt('password'),
+                'position' => 'CEO',
+                'department' => 'CEO',
             ]
         ];
         

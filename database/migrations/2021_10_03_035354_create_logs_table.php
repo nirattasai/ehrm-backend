@@ -17,12 +17,12 @@ class CreateLogsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->date('date');
-            $table->timestampTz('login_time');
-            $table->timestampTz('logout_time');
+            $table->timeTz('login_time');
+            $table->timeTz('logout_time');
             $table->boolean('is_late')->default(false);
             $table->boolean('is_leave')->default(false);
             $table->boolean('is_absent')->default(false);
-            $table->time('tatal_hours');
+            $table->float('total_hours')->default(0);
 
             $table->unsignedBigInteger('user_id');
 

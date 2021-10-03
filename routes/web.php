@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,10 @@ Route::post('/api/admin/create-user', [AdminController::class, 'create_user']);
 Route::post('/api/admin/remove-user', [AdminController::class, 'remove_user']);
 Route::get('/api/admin/all-users', [AdminController::class, 'all_users']);
 
-// Route::post('/api/user/start-work')
+
+
+Route::post('/api/user/start-work', [UserController::class, 'start_day']);
+Route::post('/api/user/end-work', [UserController::class, 'end_day']);
 // Route::post('/login', function(Request $request) {
 //     return $request->post();
 // });
