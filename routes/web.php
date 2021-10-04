@@ -40,6 +40,7 @@ Route::get('/api/admin/all-users', [AdminController::class, 'all_users']);
 
 Route::post('/api/user/start-work', [UserController::class, 'start_day']);
 Route::post('/api/user/end-work', [UserController::class, 'end_day']);
+Route::post('api/user/craete-leave', [UserController::class, 'craete_leave']);
 // Route::post('/login', function(Request $request) {
 //     return $request->post();
 // });

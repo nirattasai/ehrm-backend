@@ -16,7 +16,8 @@ class CreateLeavesTable extends Migration
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->date('date');
+            $table->date('date_start');
+            $table->date('date_end');
             $table->text('type');
             $table->integer('leave_dates');
             $table->text('cause');

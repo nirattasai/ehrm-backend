@@ -11,9 +11,10 @@ class Leave extends Model
     protected $table = 'leaves';
 
     protected $fillable = [
-        'date',
+        'date_start',
+        'date_end',
         'type',
-        'leave_date',
+        'leave_dates',
         'cause',
         'user_id',
     ];
