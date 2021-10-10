@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,22 +22,3 @@ Route::get('/csrf', function () {
 });
 
 // Route::get('/login', [LoginController::class, 'login']);
-
-Route::post('/api/login', [LoginController::class, 'login']);
-Route::get('/api/about', [LoginController::class, 'about_me']);
-Route::get('/api/logout', [LoginController::class, 'logout']);
-Route::get('/api/is-admin', [LoginController::class, 'is_admin']);
-
-//Admin route
-Route::post('/api/admin/create-user', [AdminController::class, 'create_user']);
-Route::post('/api/admin/remove-user', [AdminController::class, 'remove_user']);
-Route::get('/api/admin/all-users', [AdminController::class, 'all_users']);
-
-
-
-Route::post('/api/user/start-work', [UserController::class, 'start_day']);
-Route::post('/api/user/end-work', [UserController::class, 'end_day']);
-Route::post('api/user/craete-leave', [UserController::class, 'craete_leave']);
-// Route::post('/login', function(Request $request) {
-//     return $request->post();
-// });

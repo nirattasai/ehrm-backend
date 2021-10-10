@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Http\Controllers\Controller;
 
 
 class AdminController extends Controller
@@ -31,6 +32,6 @@ class AdminController extends Controller
 
     public function all_users(Request $request){
         $users = User::all();
-        return $users;
+        return response()->json($users);
     }
 }
