@@ -40,3 +40,7 @@ Route::post('/user/craete-leave', [UserController::class, 'craete_leave']);
 // Route::post('/login', function(Request $request) {
 //     return $request->post();
 // });
+
+// Query data
+Route::apiResource('logs', \App\Http\Controllers\Api\LogController::class);
+Route::apiResource('leaves', \App\Http\Controllers\Api\LeaveController::class);
