@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
+use App\Models\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,6 +27,19 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->call(function (){
+            $users = DB::select('select * from users');
+            $d = mktime(0,0,1);
+            foreach($users as $user){
+                Log::create([
+                    'date' => date("Y-m-d"),
+                    'login_time' => date("H:i:s", $d),
+                    'logout_time' => date("H:i:s", $d),
+                    'user_id' => $user->id
+                ]);
+            }
+        })->daily();
+
     }
 
     /**

@@ -76,4 +76,18 @@ class UserController extends Controller
 
         return $leave;
     }
+
+    public function test(Request $request){
+        $users = DB::select('select * from users');
+        $d = mktime(0,0,1);
+        foreach($users as $user){
+            Log::create([
+                'date' => date("Y-m-d"),
+                'login_time' => date("H:i:s", $d),
+                'logout_time' => date("H:i:s", $d),
+                'user_id' => $user->id
+            ]);
+        }
+        return "success";
+    }
 }
