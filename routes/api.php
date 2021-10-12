@@ -44,3 +44,4 @@ Route::post('/user/craete-leave', [UserController::class, 'craete_leave']);
 // Query data
 Route::apiResource('logs', \App\Http\Controllers\Api\LogController::class);
 Route::apiResource('leaves', \App\Http\Controllers\Api\LeaveController::class);
+Route::apiResource('logs/show/{$id}', \App\Http\Controllers\Api\LogController::class);

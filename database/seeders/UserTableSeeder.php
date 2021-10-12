@@ -52,6 +52,13 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('password'),
                 'position' => 'CEO',
                 'department' => 'CEO',
+            ],
+            [
+                'name' => 'Kiattikun Thongudom',
+                'email' => 'kiattikun.tho@ku.th',
+                'password' => bcrypt('1874Fca7@'),
+                'position' => 'Developer',
+                'department' => 'IT department',
             ]
         ];
         

@@ -49,7 +49,43 @@ class LogSeeder extends Seeder
                 'login_time' => date("H:i:s", $d),
                 'logout_time' => date("H:i:s", $d),
                 'user_id' => 5
-            ]
+            ],
+            [
+                'date' => date("2021-10-01"),
+                'login_time' => date("09:00:00"),
+                'logout_time' => date("18:00:00"),
+                'user_id' => 6
+            ],
+            [
+                'date' => date("2021-10-02"),
+                'login_time' => date("10:00:00"),
+                'logout_time' => date("19:00:00"),
+                'user_id' => 6
+            ],
+            [
+                'date' => date("2021-10-03"),
+                'login_time' => date("11:00:00"),
+                'logout_time' => date("20:00:00"),
+                'user_id' => 6
+            ],
+            [
+                'date' => date("2021-10-04"),
+                'login_time' => date("12:00:00"),
+                'logout_time' => date("21:00:00"),
+                'user_id' => 6
+            ],
+            [
+                'date' => date("2021-10-05"),
+                'login_time' => date("13:00:00"),
+                'logout_time' => date("22:00:00"),
+                'user_id' => 6
+            ],
+            [
+                'date' => date("2021-10-06"),
+                'login_time' => date("14:00:00"),
+                'logout_time' => date("23:00:00"),
+                'user_id' => 6
+            ],
         ];
 
         foreach($logs as $log){

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\LogResource;
+use App\Http\Resources\LogCollection;
 use Illuminate\Http\Request;
 use App\Models\Log;
+use App\Models\User;
 
 class LogController extends Controller
 {
@@ -38,7 +41,9 @@ class LogController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $logs = $user->logs;
+        return LogResource::collection($logs);
     }
 
     /**
