@@ -37,6 +37,7 @@ Route::get('/admin/all-users', [AdminController::class, 'all_users']);
 Route::post('/user/start-work', [UserController::class, 'start_day']);
 Route::post('/user/end-work', [UserController::class, 'end_day']);
 Route::post('/user/craete-leave', [UserController::class, 'craete_leave']);
+Route::get('/user/test', [UserController::class, 'test']);
 // Route::post('/login', function(Request $request) {
 //     return $request->post();
 // });

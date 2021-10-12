@@ -78,16 +78,17 @@ class UserController extends Controller
     }
 
     public function test(Request $request){
-        $users = DB::select('select * from users');
-        $d = mktime(0,0,1);
-        foreach($users as $user){
-            Log::create([
-                'date' => date("Y-m-d"),
-                'login_time' => date("H:i:s", $d),
-                'logout_time' => date("H:i:s", $d),
-                'user_id' => $user->id
-            ]);
+        $logs = DB::select('select * from logs where date = ?',[date("Y-m-d")]);
+        foreach($logs as $log){
+            $login_time = strtotime($log->login_time);
+            $late_time = strtotime(env('LATE_TIME'));
+            if(($log->login_time == "00:00:01" or $log->logout_time == "00:00:01") and $log->is_leave == 0){
+                DB::update("update logs set is_absent = 1 where id = ?",[$log->id]);
+            }
+            else if(($login_time >= $late_time) and $log->is_leave == 0){
+                DB::update("update logs set is_late = 1 where id = ?",[$log->id]);
+            }
         }
-        return "success";
+        return $logs;
     }
 }
