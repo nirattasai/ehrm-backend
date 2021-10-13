@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Leave;
+use App\Models\User;
 
 class LeaveController extends Controller
 {
@@ -16,7 +17,10 @@ class LeaveController extends Controller
     public function index()
     {
         $leaves = Leave::get();
-        return $leaves;
+        return response()->json(array(
+            'message' => 'all',
+            'data' => $leaves
+        ));
     }
 
     /**
@@ -38,7 +42,9 @@ class LeaveController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $leaves = $user->leaves;
+        return $leaves;
     }
 
     /**

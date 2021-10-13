@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\LogController;
+use App\Http\Controllers\Api\LeaveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,7 @@ Route::get('/user/test', [UserController::class, 'test']);
 // });
 
 // Query data
-Route::apiResource('logs', \App\Http\Controllers\Api\LogController::class);
-Route::apiResource('leaves', \App\Http\Controllers\Api\LeaveController::class);
-Route::apiResource('logs/show/{$id}', \App\Http\Controllers\Api\LogController::class);
+Route::get('/logs', [LogController::class, 'index']);
+Route::get('/leaves', [LogController::class, 'index']);
+Route::get('/logs/{id}', [LogController::class, 'show']);
+Route::get('/leaves/{id}', [LeaveController::class, 'show']);

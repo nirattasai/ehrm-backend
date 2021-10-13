@@ -19,7 +19,10 @@ class LogController extends Controller
     public function index()
     {
         $logs = Log::get();
-        return $logs;
+        return response()->json(array(
+            'message' => 'all',
+            'data' => $logs
+        ));
     }
 
     /**
@@ -43,7 +46,7 @@ class LogController extends Controller
     {
         $user = User::findOrFail($id);
         $logs = $user->logs;
-        return LogResource::collection($logs);
+        return $logs;
     }
 
     /**
