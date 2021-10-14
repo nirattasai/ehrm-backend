@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\LogController;
+use App\Http\Controllers\Api\LeaveController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +43,9 @@ Route::get('/user/test', [UserController::class, 'test']);
 // Route::post('/login', function(Request $request) {
 //     return $request->post();
 // });
+
+// Query data
+Route::get('/logs', [LogController::class, 'index']);
+Route::get('/leaves', [LogController::class, 'index']);
+Route::get('/logs/{id}', [LogController::class, 'show']);
+Route::get('/leaves/{id}', [LeaveController::class, 'show']);
