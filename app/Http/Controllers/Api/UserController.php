@@ -41,7 +41,7 @@ class UserController extends Controller
         // return "success";
     }
     
-    public function craete_leave(Request $request){
+    public function create_leave(Request $request){
         $date_start = $request->input('date_start');
         $date_end = $request->input('date_end');
         $type = $request->input('type');
