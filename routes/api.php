@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\LogController;
 use App\Http\Controllers\Api\LeaveController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,10 +25,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login', [LoginController::class, 'login']);
-Route::get('/about', [LoginController::class, 'about_me']);
-Route::get('/logout', [LoginController::class, 'logout']);
-Route::get('/is-admin', [LoginController::class, 'is_admin']);
+// Route::post('/login', [LoginController::class, 'login']);
+// Route::get('/about', [LoginController::class, 'about_me']);
+// Route::get('/logout', [LoginController::class, 'logout']);
+// Route::get('/is-admin', [LoginController::class, 'is_admin']);
 
 //Admin route
 Route::post('/admin/create-user', [AdminController::class, 'create_user']);
@@ -46,6 +47,17 @@ Route::get('/user/test', [UserController::class, 'test']);
 
 // Query data
 Route::get('/logs', [LogController::class, 'index']);
-Route::get('/leaves', [LogController::class, 'index']);
-Route::get('/logs/{id}', [LogController::class, 'show']);
-Route::get('/leaves/{id}', [LeaveController::class, 'show']);
+Route::get('/leaves', [LeaveController::class, 'index']);
+Route::get('/logs/mine', [LogController::class, 'myLogs']);
+Route::get('/leaves/mine', [LeaveController::class, 'myLeaves']);
+
+// JWT-Auth
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('login', [LoginController::class, 'login']);
+    Route::post('logout', [LoginController::class, 'logout']);
+    Route::post('refresh', [LoginController::class, 'refresh']);
+    Route::post('me', [LoginController::class, 'me']);
+});

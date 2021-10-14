@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Leave;
 use App\Models\User;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LeaveController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,7 +49,17 @@ class LeaveController extends Controller
     {
         $user = User::findOrFail($id);
         $leaves = $user->leaves;
-        return $leaves;
+        return response()->json(array(
+            'data' => $leaves
+        ));
+    }
+
+    public function myLeaves() {
+        $user = JWTAuth::user();
+        $leaves = $user->leaves;
+        return response()->json(array(
+            'data' => $leaves
+        ));
     }
 
     /**
