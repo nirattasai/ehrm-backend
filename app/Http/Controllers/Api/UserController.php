@@ -7,22 +7,27 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Log;
 use App\Models\Leave;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class UserController extends Controller
 {
-    //
+    public function __construct() {
+        $this->middleware('auth:api');
+    }
+
     public function start_day(Request $request){
+        $user = JWTAuth::user();
         $start_time = $request->input('start_time');
-        $user_id = $request->input('user_id');
+        $user_id = $user->id;
         $date = $request->input('date');
         $response = DB::update('update logs set login_time = ? where user_id = ? and date = ?',[$start_time, $user_id, $date]);
         return $response;
     }
 
     public function end_day(Request $request){
-        
+        $user = JWTAuth::user();
         $end_time = $request->input('end_time');
-        $user_id = $request->input('user_id');
+        $user_id = $user->id;
         $date = $request->input('date');
         DB::update('update logs set logout_time = ? where user_id = ? and date = ?',[$end_time, $user_id, $date]);
         $time = DB::select('select login_time, logout_time from logs where user_id = ? and date = ?',[$user_id, $date]);
@@ -42,12 +47,13 @@ class UserController extends Controller
     }
     
     public function create_leave(Request $request){
+        $user = JWTAuth::user();
         $date_start = $request->input('date_start');
         $date_end = $request->input('date_end');
         $type = $request->input('type');
         $leave_dates = $request->input('leave_dates');
         $cause = $request->input('cause');
-        $user_id = $request->input('user_id');
+        $user_id = $user->id;
 
         $leave = Leave::create([
             'date_start' => $date_start,
