@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
@@ -26,16 +27,22 @@ class AdminController extends Controller
         User::create($user);
         return "success";
     }
-
     public function remove_user(Request $request){
         $user = User::find($request->input('id'));
         $user->delete();
 
         return "remove success";
     }
+    public function get_user($id)
+    {
+        $user = User::all();
+        return $user;
+    }
 
     public function all_users(Request $request){
-        $users = User::all();
+        $users = DB::table('users')
+                ->where('is_admin', '=', 0)
+                ->get();
         return response()->json($users);
     }
 }
