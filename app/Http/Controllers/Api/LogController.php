@@ -8,9 +8,14 @@ use App\Http\Resources\LogCollection;
 use Illuminate\Http\Request;
 use App\Models\Log;
 use App\Models\User;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LogController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +51,17 @@ class LogController extends Controller
     {
         $user = User::findOrFail($id);
         $logs = $user->logs;
-        return $logs;
+        return response()->json(array(
+            'data' => $logs
+        ));
+    }
+
+    public function myLogs() {
+        $user = JWTAuth::user();
+        $logs = $user->logs;
+        return response()->json(array(
+            'data' => $logs
+        ));
     }
 
     /**
