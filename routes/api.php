@@ -33,6 +33,7 @@ Route::get('/is-admin', [LoginController::class, 'is_admin']);
 Route::post('/admin/create-user', [AdminController::class, 'create_user']);
 Route::post('/admin/remove-user', [AdminController::class, 'remove_user']);
 Route::get('/admin/all-users', [AdminController::class, 'all_users']);
+Route::get('/admin/user/{id}', [AdminController::class, 'get_user']);
 
 
 
