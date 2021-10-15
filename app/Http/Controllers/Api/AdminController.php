@@ -20,6 +20,7 @@ class AdminController extends Controller
                 'password' => bcrypt($request->input('password')),
                 'position' => $request->input('position'),
                 'department' => $request->input('department'),
+                'role' => $request->input('role')
         ];
 
         User::create($user);

@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->text('position');
             $table->text('department');
-            $table->boolean('is_admin')->default(false);
+            $table->string('role')->default("user");
             $table->integer('sick_leave_left')->default(env('SICK_LEAVE_DAYS'));
             $table->integer('personal_leave_left')->default(env('PERSONAL_LEAVE_DAYS'));
             $table->integer('vacation_leave_left')->default(env('VACATION_LEAVE_DAYS'));
