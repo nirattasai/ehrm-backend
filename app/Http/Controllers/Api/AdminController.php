@@ -35,13 +35,13 @@ class AdminController extends Controller
     }
     public function get_user($id)
     {
-        $user = User::all();
+        $user = User::findOrFail($id);
         return $user;
     }
 
     public function all_users(Request $request){
         $users = DB::table('users')
-                ->where('is_admin', '=', 0)
+                ->where('role', '!=', 'admin')
                 ->get();
         return response()->json($users);
     }
