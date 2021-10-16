@@ -21,7 +21,7 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        $leaves = Leave::get();
+        $leaves = Leave::with("user")->get();
         return response()->json(array(
             'message' => 'all',
             'data' => $leaves
@@ -58,6 +58,14 @@ class LeaveController extends Controller
         $user = JWTAuth::user();
         $leaves = $user->leaves;
         return response()->json(array(
+            'data' => $leaves
+        ));
+    }
+
+    public function leavesByDate($date) {
+        $leaves = Leave::where("created_at", "=", $date)->get();
+        return response()->json(array(
+            'message' => $date,
             'data' => $leaves
         ));
     }

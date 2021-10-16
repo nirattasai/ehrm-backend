@@ -55,13 +55,6 @@ class UserTableSeeder extends Seeder
                 'position' => 'CEO',
                 'department' => 'CEO',
             ],
-            [
-                'name' => 'Kiattikun Thongudom',
-                'email' => 'kiattikun.tho@ku.th',
-                'password' => bcrypt('1874Fca7@'),
-                'position' => 'Developer',
-                'department' => 'IT department',
-            ]
         ];
         
         foreach($users as $user){
