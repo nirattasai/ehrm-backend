@@ -22,6 +22,7 @@ class CreateLeavesTable extends Migration
             $table->integer('leave_dates');
             $table->text('cause');
             $table->unsignedBigInteger('user_id');
+            $table->string('status')->default("waiting");
 
             $table->foreign('user_id')
                   ->references('id')
