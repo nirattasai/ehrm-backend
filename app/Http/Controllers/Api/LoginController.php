@@ -14,47 +14,6 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LoginController extends Controller
 {
-    //
-    // public function login(Request $request){
-    //     // login method
-    //     $credentials = Validator::make($request->all(), [
-    //         'email' => ['required', 'email'],
-    //         'password' => ['required'],
-    //     ]);
-
-    //     if (Auth::attempt($credentials->validated())) {
-    //         return Auth::user();
-    //     }
-
-    //     return "out";
-
-    //     // JWT-Auth
-    //     $validator = Validator::make($request->all(), [
-    //         'email' => 'required|email',
-    //         'password' => 'required|string|min:6',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return response()->json($validator->errors(), 422);
-    //     }
-
-    //     if (! $token = JWTAuth::attempt($validator->validated())) {
-    //         return response()->json(['error' => 'Unauthorized'], 401);
-    //     }
-
-    //     return $this->respondWithToken($token);
-    // }
-
-    // public function about_me(Request $request){
-    //     return Auth::user();
-    // }
-
-    // public function logout(Request $request){
-    //     Auth::logout();
-
-    //     return Auth::user();
-    // }
-
     public function is_admin(Request $request){
         return Auth::user();
     }

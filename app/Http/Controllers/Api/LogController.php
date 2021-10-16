@@ -64,6 +64,14 @@ class LogController extends Controller
         ));
     }
 
+    public function logsByDate($date) {
+        $logs = Log::where("date", "=", $date)->get();
+        return response()->json(array(
+            'message' => $date,
+            'data' => $logs
+        ));
+    }
+
     /**
      * Update the specified resource in storage.
      *
