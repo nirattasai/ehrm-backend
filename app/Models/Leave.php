@@ -18,6 +18,7 @@ class Leave extends Model
         'leave_dates',
         'cause',
         'user_id',
+        'status',
     ];
 
     
