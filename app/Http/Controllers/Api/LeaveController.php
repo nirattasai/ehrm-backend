@@ -82,6 +82,13 @@ class LeaveController extends Controller
         $leave->status = $request->input('status');
         $leave->save();
 
+        if ($leave->status == "confirmed"){
+            $sql_leave_type = $leave->type."_left";
+
+            DB::update("update users set ".$sql_leave_type." = ".$sql_leave_type. "- ".$leave->leave_dates." where id = ".$leave->user_id);
+
+        }
+        
         return "update success";
     }
     

@@ -58,6 +58,16 @@ class UserController extends Controller
         $cause = $request->input('cause');
         $user_id = $user->id;
 
+        $query_type = $type.'_left';
+        $qu_left = DB::select('select '.$query_type.' from users where id = '.$user_id);
+        $left = $qu_left[0]->$query_type;
+        if ($left < $leave_dates){
+            return response()->json([
+                'status' => 'error'
+            ]
+            );
+        }
+
         $leave = Leave::create([
             'date_start' => $date_start,
             'date_end' => $date_end,
@@ -68,23 +78,9 @@ class UserController extends Controller
 
         ]);
 
-        $sql_leave_type = NULL;
-        if ($type == 'sick_leave'){
-            $sql_leave_type = 'sick_leave_left';
-        }
-        elseif ($type == 'personal_leave'){
-            $sql_leave_type = 'personal_leave_left';
-        }
-        elseif ($type == 'vacation_leave'){
-            $sql_leave_type = 'vacation_leave_left';
-        }
-        elseif ($type == 'maternity_leave'){
-            $sql_leave_type = 'maternity_leave_left';
-        }
-
-        DB::update("update users set ".$sql_leave_type." = ".$sql_leave_type. "- ".$leave_dates." where id = ".$user_id);
-
-        return $leave;
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 
     public function test(Request $request){
