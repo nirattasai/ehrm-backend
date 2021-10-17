@@ -51,6 +51,7 @@ Route::get('/logs', [LogController::class, 'index']);
 Route::get('/leaves', [LeaveController::class, 'index']);
 Route::get('/logs/mine', [LogController::class, 'myLogs']);
 Route::get('/leaves/mine', [LeaveController::class, 'myLeaves']);
+Route::get('/leaves/by-date/{date}', [LeaveController::class, 'leavesByDate']);
 
 // JWT-Auth
 Route::group([
