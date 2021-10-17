@@ -40,10 +40,7 @@ class UserController extends Controller
         $minutes += $total_hour->h * 60;
         $minutes += $total_hour->i;
 
-        // Change from float to string
-        $total_hours = sprintf('%02d', intdiv($minutes, 60)).':'.sprintf('%02d', ($minutes % 60));
-
-        DB::update('update logs set total_hours = ? where user_id = ? and date = ?',[$total_hours, $user_id, $date]);
+        DB::update('update logs set total_hours = ? where user_id = ? and date = ?',[$minutes/60, $user_id, $date]);
         
         return $minutes;
         // return "success";
@@ -57,7 +54,6 @@ class UserController extends Controller
         $leave_dates = $request->input('leave_dates');
         $cause = $request->input('cause');
         $user_id = $user->id;
-        $status = $request->input('status');
 
         $leave = Leave::create([
             'date_start' => $date_start,
@@ -66,7 +62,7 @@ class UserController extends Controller
             'leave_dates' => $leave_dates,
             'cause' => $cause,
             'user_id' => $user_id,
-            'status' => $status
+
         ]);
 
         $sql_leave_type = NULL;
