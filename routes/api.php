@@ -56,6 +56,7 @@ Route::post('/leaves/waiting/update-status/{id}', [LeaveController::class, 'upda
 Route::get('/leaves/by-date/{date}', [LeaveController::class, 'leavesByDate']);
 
 Route::get('/logs/by-date/{date}', [LogController::class, 'logsByDate']);
+Route::get('/logs/{id}', [LogController::class, 'show']);
 
 // JWT-Auth
 Route::group([
