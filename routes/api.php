@@ -50,6 +50,11 @@ Route::get('/logs', [LogController::class, 'index']);
 Route::get('/leaves', [LeaveController::class, 'index']);
 Route::get('/logs/mine', [LogController::class, 'myLogs']);
 Route::get('/leaves/mine', [LeaveController::class, 'myLeaves']);
+Route::get('/leaves/waiting', [LeaveController::class, 'waitingLeaves']);
+Route::get('/leaves/waiting/{id}', [LeaveController::class, 'waitingLeavesById']);
+Route::post('/leaves/waiting/update-status/{id}', [LeaveController::class, 'update_status']);
+Route::get('/leaves/by-date/{date}', [LeaveController::class, 'leavesByDate']);
+
 Route::get('/logs/by-date/{date}', [LogController::class, 'logsByDate']);
 
 // JWT-Auth
