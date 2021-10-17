@@ -86,7 +86,9 @@ class LeaveController extends Controller
     }
     
     public function leavesByDate($date) {
-        $leaves = Leave::where("created_at", "=", $date)->get();
+        $leaves = Leave::where("created_at", "rlike", "[[:<:]]{$date}[[:>:]]")
+                        ->with("user")
+                        ->get();
         return response()->json(array(
             'message' => $date,
             'data' => $leaves
