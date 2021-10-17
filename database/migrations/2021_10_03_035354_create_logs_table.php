@@ -22,7 +22,7 @@ class CreateLogsTable extends Migration
             $table->boolean('is_late')->default(false);
             $table->boolean('is_leave')->default(false);
             $table->boolean('is_absent')->default(false);
-            $table->float('total_hours')->default(0);
+            $table->string('total_hours')->default("00:00");
 
             $table->unsignedBigInteger('user_id');
 

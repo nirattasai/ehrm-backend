@@ -40,7 +40,10 @@ class UserController extends Controller
         $minutes += $total_hour->h * 60;
         $minutes += $total_hour->i;
 
-        DB::update('update logs set total_hours = ? where user_id = ? and date = ?',[$minutes/60, $user_id, $date]);
+        // Change from float to string
+        $total_hours = sprintf('%02d', intdiv($minutes, 60)).':'.sprintf('%02d', ($minutes % 60));
+
+        DB::update('update logs set total_hours = ? where user_id = ? and date = ?',[$total_hours, $user_id, $date]);
         
         return $minutes;
         // return "success";
