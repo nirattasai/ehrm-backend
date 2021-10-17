@@ -37,7 +37,6 @@ Route::get('/admin/all-users', [AdminController::class, 'all_users']);
 Route::get('/admin/user/{id}', [AdminController::class, 'get_user']);
 
 
-
 Route::post('/user/start-work', [UserController::class, 'start_day']);
 Route::post('/user/end-work', [UserController::class, 'end_day']);
 Route::post('/user/create-leave', [UserController::class, 'create_leave']);
@@ -55,6 +54,8 @@ Route::get('/leaves/waiting', [LeaveController::class, 'waitingLeaves']);
 Route::get('/leaves/waiting/{id}', [LeaveController::class, 'waitingLeavesById']);
 Route::post('/leaves/waiting/update-status/{id}', [LeaveController::class, 'update_status']);
 Route::get('/leaves/by-date/{date}', [LeaveController::class, 'leavesByDate']);
+
+Route::get('/logs/by-date/{date}', [LogController::class, 'logsByDate']);
 
 // JWT-Auth
 Route::group([

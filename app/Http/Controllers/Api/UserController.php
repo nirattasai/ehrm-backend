@@ -57,7 +57,6 @@ class UserController extends Controller
         $leave_dates = $request->input('leave_dates');
         $cause = $request->input('cause');
         $user_id = $user->id;
-        $status = $request->input('status');
 
         $leave = Leave::create([
             'date_start' => $date_start,
@@ -66,7 +65,7 @@ class UserController extends Controller
             'leave_dates' => $leave_dates,
             'cause' => $cause,
             'user_id' => $user_id,
-            'status' => $status
+
         ]);
 
         $sql_leave_type = NULL;
