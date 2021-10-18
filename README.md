@@ -7,6 +7,33 @@ generate key
 php artisan jwt:secret
 ```
 
+## Setup programming
+```
+composer install
+composer dump-autoload
+php artisan serve
+```
+
+## Setup database
+```
+php aritsan migrate
+php artisan db:seed
+```
+
+## Database
+leaves
+```
+ตารางแสดงวันลาของพนักงานแต่ละคน
+```
+logs
+```
+ตารางแสดงสเตตัสของพนักงานในการทำงานของแต่ละวัน
+```
+users
+```
+ตารางแสดงข้อมูลของพนักงานแต่ละคน
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
