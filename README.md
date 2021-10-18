@@ -1,5 +1,9 @@
-# EHRM
+# EHRM (Backend)
 
+## Tech stack
+   1. laravel 4.2.8
+   2. php 7.4.3
+   3. mysql 8.0.26
 
 ## Desciption
 
