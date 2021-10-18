@@ -90,6 +90,11 @@ php artisan jwt:secret
 php artisan serve
 ```
 
+## run schedule task
+```
+php artisan schedule:work
+```
+
 ## Database
 
 leaves
