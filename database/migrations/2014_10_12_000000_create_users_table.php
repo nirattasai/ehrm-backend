@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('position');
             $table->text('department');
             $table->string('role')->default("user");
+            $table->longText('image')->nullable();
             $table->integer('sick_leave_left')->default(env('SICK_LEAVE_DAYS'));
             $table->integer('personal_leave_left')->default(env('PERSONAL_LEAVE_DAYS'));
             $table->integer('vacation_leave_left')->default(env('VACATION_LEAVE_DAYS'));

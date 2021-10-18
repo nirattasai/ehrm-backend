@@ -12,13 +12,3 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/csrf', function () {
-    echo csrf_token();
-});
-
-// Route::get('/login', [LoginController::class, 'login']);
