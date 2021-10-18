@@ -65,19 +65,20 @@ class LeaveController extends Controller
 
     public function waitingLeaves(Request $request){
         $user = JWTAuth::user();
-        // $leaves = Leave::with('user')
-        //           ->where('status', '=', 'waiting')
-        //           ->whereBelongTo('department', '=', $user->department)
-        //           ->get();
-        $leaves = DB::table('leaves')
-        ->join('users','leaves.user_id','=','users.id')
-        ->where('department','=', $user->department)
-        ->where('status', '=', 'waiting')
-        ->get();
+        $raw = "select leaves.id, users.id as user_id, leaves.created_at, users.name from leaves inner join users on leaves.user_id = users.id where department = '".$user->department."' and status = 'waiting'";
+        $leaves = DB::select(DB::raw($raw));
         return response()->json($leaves);
     }
 
     public function waitingLeavesById($id){
+        $leaves = Leave::with('user')
+                  ->where('id', '=', $id)
+                  ->get();
+        return $leaves;
+    }
+
+    
+    public function leavesById($id){
         $leaves = Leave::with('user')
                   ->where('user_id', '=', $id)
                   ->get();
@@ -100,13 +101,11 @@ class LeaveController extends Controller
     }
     
     public function leavesByDate($date) {
-        $leaves = Leave::where("created_at", "rlike", "[[:<:]]{$date}[[:>:]]")
-                        ->with("user")
-                        ->get();
-        return response()->json(array(
-            'message' => $date,
-            'data' => $leaves
-        ));
+        $raw = "select * from leaves inner join users on leaves.user_id = users.id where '".$date."'  between date_start and date_end and status = 'confirmed'";
+        $leaves = DB::select(
+            DB::raw($raw)
+        );
+        return response()->json($leaves);
     }
 
     /**
