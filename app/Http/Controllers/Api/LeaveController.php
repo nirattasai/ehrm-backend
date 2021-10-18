@@ -72,6 +72,14 @@ class LeaveController extends Controller
 
     public function waitingLeavesById($id){
         $leaves = Leave::with('user')
+                  ->where('id', '=', $id)
+                  ->get();
+        return $leaves;
+    }
+
+    
+    public function leavesById($id){
+        $leaves = Leave::with('user')
                   ->where('user_id', '=', $id)
                   ->get();
         return $leaves;
