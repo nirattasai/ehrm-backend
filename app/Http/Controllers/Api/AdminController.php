@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
@@ -24,7 +25,15 @@ class AdminController extends Controller
                 'role' => $request->input('role')
         ];
 
-        User::create($user);
+        $user_create = User::create($user);
+
+        $d = mktime(0,0,1);
+        Log::create([
+            'date' => date("Y-m-d"),
+            'login_time' => date("H:i:s", $d),
+            'logout_time' => date("H:i:s", $d),
+            'user_id' => $user_create->id
+        ]);
         return "success";
     }
     public function remove_user(Request $request){

@@ -52,7 +52,7 @@ class Kernel extends ConsoleKernel
                     DB::update("update logs set is_late = 1 where id = ?",[$log->id]);
                 }
             }
-        })->dailyAt('18:00');
+        })->dailyAt(env('OUT_TIME'));
 
     }
 

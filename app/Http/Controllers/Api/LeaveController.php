@@ -64,9 +64,15 @@ class LeaveController extends Controller
     }
 
     public function waitingLeaves(Request $request){
-        $leaves = Leave::with('user')
-                  ->where('status', '=', 'waiting')
-                  ->get();
+        $user = JWTAuth::user();
+        // $leaves = Leave::with('user')
+        //           ->where('status', '=', 'waiting')
+        //           ->whereBelongTo('department', '=', $user->department)
+        //           ->get();
+        $leaves = DB::table('leaves')
+        ->join('users','leaves.user_id','=','users.id')
+        ->where('department','=', $user->department)
+        ->get();
         return response()->json($leaves);
     }
 
