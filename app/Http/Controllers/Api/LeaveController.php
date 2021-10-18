@@ -101,21 +101,11 @@ class LeaveController extends Controller
     }
     
     public function leavesByDate($date) {
-        $leaves = Leave::where($date, '<=', 'end_date')
-                        ->where($date, '>=', 'start_date')
-                        ->get();
-        // $leaves = DB::table('leaves')
-        //             ->where($date, 'between','start_date', 'end_date', 'and')
-        //             ->get();
-        // $leaves = Leave::whereBetween($date, ['date_start', 'date_end'])
-        //                 ->get();
-        // $leaves = Leave::where("created_at", "rlike", "[[:<:]]{$date}[[:>:]]")
-        //                 ->with("user")
-        //                 ->get();
-        return response()->json(array(
-            'message' => $date,
-            'data' => $leaves
-        ));
+        $raw = "select * from leaves inner join users on leaves.user_id = users.id where '".$date."'  between date_start and date_end and status = 'confirmed'";
+        $leaves = DB::select(
+            DB::raw($raw)
+        );
+        return response()->json($leaves);
     }
 
     /**
