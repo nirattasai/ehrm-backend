@@ -78,10 +78,14 @@ class LeaveController extends Controller
     }
 
     
-    public function leavesById($id){
-        $leaves = Leave::with('user')
-                  ->where('user_id', '=', $id)
-                  ->get();
+    public function leavesById($id, $dateStart, $dateEnd){
+        $raw = "select * from leaves inner join users on leaves.user_id = users.id where '".$id."' = user_id and date_start between '".$dateStart."' and '".$dateEnd."'";
+        $leaves = DB::select(
+            DB::raw($raw)
+        );
+        // $leaves = Leave::with('user')
+        //           ->where('user_id', '=', $id)
+        //           ->get();
         return $leaves;
     }
 

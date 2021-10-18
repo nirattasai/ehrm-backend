@@ -52,7 +52,7 @@ Route::get('/logs/mine', [LogController::class, 'myLogs']);
 Route::get('/leaves/mine', [LeaveController::class, 'myLeaves']);
 Route::get('/leaves/waiting', [LeaveController::class, 'waitingLeaves']);
 Route::get('/leaves/waiting/{id}', [LeaveController::class, 'waitingLeavesById']);
-Route::get('/leaves/{id}', [LeaveController::class, 'leavesById']);
+Route::get('/leaves/{dateStart}-{dateEnd}/{id}', [LeaveController::class, 'leavesById']);
 Route::post('/leaves/waiting/update-status/{id}', [LeaveController::class, 'update_status']);
 Route::get('/leaves/by-date/{date}', [LeaveController::class, 'leavesByDate']);
 
