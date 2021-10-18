@@ -72,13 +72,14 @@ class LeaveController extends Controller
         $leaves = DB::table('leaves')
         ->join('users','leaves.user_id','=','users.id')
         ->where('department','=', $user->department)
+        ->where('status', '=', 'waiting')
         ->get();
         return response()->json($leaves);
     }
 
     public function waitingLeavesById($id){
         $leaves = Leave::with('user')
-                  ->where('id', '=', $id)
+                  ->where('user_id', '=', $id)
                   ->get();
         return $leaves;
     }
