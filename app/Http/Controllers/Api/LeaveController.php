@@ -79,6 +79,14 @@ class LeaveController extends Controller
 
     public function waitingLeavesById($id){
         $leaves = Leave::with('user')
+                  ->where('id', '=', $id)
+                  ->get();
+        return $leaves;
+    }
+
+    
+    public function leavesById($id){
+        $leaves = Leave::with('user')
                   ->where('user_id', '=', $id)
                   ->get();
         return $leaves;
@@ -100,9 +108,17 @@ class LeaveController extends Controller
     }
     
     public function leavesByDate($date) {
-        $leaves = Leave::where("created_at", "rlike", "[[:<:]]{$date}[[:>:]]")
-                        ->with("user")
+        $leaves = Leave::where($date, '<=', 'end_date')
+                        ->where($date, '>=', 'start_date')
                         ->get();
+        // $leaves = DB::table('leaves')
+        //             ->where($date, 'between','start_date', 'end_date', 'and')
+        //             ->get();
+        // $leaves = Leave::whereBetween($date, ['date_start', 'date_end'])
+        //                 ->get();
+        // $leaves = Leave::where("created_at", "rlike", "[[:<:]]{$date}[[:>:]]")
+        //                 ->with("user")
+        //                 ->get();
         return response()->json(array(
             'message' => $date,
             'data' => $leaves
