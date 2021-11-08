@@ -1,0 +1,36 @@
+version: '3.3'
+services:
+  #MySQL Service
+  db:
+    image: mysql
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: ehrm
+      MYSQL_ROOT_PASSWORD: password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql 
+    networks:
+      - app-network
+    expose:
+      - 3306
+
+  php-apache:
+      container_name: php-apache
+      build:
+        context: .
+      ports:
+          - '8000:80'
+      depends_on:
+        - db
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbdata:
